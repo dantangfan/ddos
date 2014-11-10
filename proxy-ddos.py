@@ -6,7 +6,7 @@ import re
 import sys
 import socket
 #if responce time is more than 3s, it's really a bad one. there is no need to dos .
-socket.setdefaulttimeout(2)
+socket.setdefaulttimeout(1)
 #global params
 url=''
 host=''

